@@ -58,7 +58,10 @@ namespace LabelsRename
             var newLines = oldLines.Select(s => 
             s.Replace("MorroDefau_MDQGreeting_", "MorroDefau_MDQGreetingTopi_")
             .Replace("MorroDefau_MDQGreetings_", "MorroDefau_MDQGreetingsTop_")
-            .Replace("MorroDefaultQuest_MDQIdle_", "MorroDefau_MDQIdleLinesTop_"))
+            .Replace("MorroDefaultQuest_MDQIdle_", "MorroDefau_MDQIdleLinesTop_")
+            .Replace("MorroDefaultQuest_MDQTopic_", "MorroDefau_MDQMolagMarTopi_")
+            .Replace("MorroDefau_MDQTopic_", "MorroDefau_MDQMolagMarTopi_")
+            .Replace("MorroDefau_MDQVivecTopicCi_", "MorroDefau_MDQVivecTopic_"))
                 .ToList();
 
             File.WriteAllLines(fileLocation, newLines);

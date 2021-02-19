@@ -34,5 +34,11 @@ namespace JourneymanToolkit
             RetakesFormatter.MainForm frm = new RetakesFormatter.MainForm();
             frm.Show();
         }
+
+        private void btnExtractPerfectLines_Click(object sender, EventArgs e)
+        {
+            AutomateRetakes.MainForm frm = new AutomateRetakes.MainForm();
+            frm.Show();
+        }
     }
 }

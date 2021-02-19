@@ -231,40 +231,54 @@ namespace RetakesFormatter
 
         }
 
-        /// <summary>
-        /// Finds a specific string in the excel sheet and replaces it with another string
-        /// </summary>
-        /// <param name="sheet">The sheet to search for the string in</param>
-        private void FindAndReplace(ExcelWorksheet sheet, string valueToSearch, string valueToReplace)
-        {
 
-            //Use LINQ query to search all the Sheet and select only the cells that contain the string
-            var query = from cell in sheet.Cells["A:XFD"]
-                        where cell.Value?.ToString().Contains(valueToSearch) == true
-                        select cell;
-
-            //replace the string in the cells that we selected
-            foreach (var cell in query)
-            {
-                cell.Value = cell.Value.ToString().Replace(valueToSearch, valueToReplace);
-            }           
-        }
 
         //Use the FindAndReplace function multiple times to search for the text required and replace it
         private void SearchForText(ExcelWorksheet sheet)
         {
-            FindAndReplace(sheet, "Bad Acting", "Acting");
+            /*
+             * This array has the values to be searched and the values that will replace it.
+             * We replace & here becuase of a bug in Epplus that results in Xml parser error
+             * The rest of the replacement is made according to the new rules from the Voice Processing Team
+             */
+            string[,] searchParameters = new string[8, 2] 
+            {
+                {"Bad Acting", "Acting" },
+                {"&", "and" },
+                { "MorroDefau_MDQGreeting_", "MorroDefau_MDQGreetingTopi_" },
+                { "MorroDefau_MDQGreetings_", "MorroDefau_MDQGreetingsTop_" },
+                { "MorroDefaultQuest_MDQIdle_", "MorroDefau_MDQIdleLinesTop_" } ,
+                { "MorroDefaultQuest_MDQTopic_","MorroDefau_MDQMolagMarTopi_"},
+                { "MorroDefau_MDQTopic_","MorroDefau_MDQMolagMarTopi_"},
+                { "MorroDefau_MDQVivecTopicCi_","MorroDefau_MDQVivecTopic_"} 
+            };
 
-            //To avoid the xml parses error
-            FindAndReplace(sheet, "&", "and");
-
-
-            //The new rule for renaming the labels
-            FindAndReplace(sheet, "MorroDefau_MDQGreeting_", "MorroDefau_MDQGreetingTopi_");
-            FindAndReplace(sheet, "MorroDefau_MDQGreetings_", "MorroDefau_MDQGreetingsTop_");
-            FindAndReplace(sheet, "MorroDefaultQuest_MDQIdle_", "MorroDefau_MDQIdleLinesTop_");
+            FindAndReplace(sheet, searchParameters);
 
         }
+
+        /// <summary>
+        /// Finds a specific string in the excel sheet and replaces it with another string
+        /// </summary>
+        /// <param name="sheet">The sheet to search for the string in</param>
+        private void FindAndReplace(ExcelWorksheet sheet, string[,] searchParameters)
+        {
+            for (int i = 0; i < searchParameters.GetLength(0); i++)
+            {
+                //Use LINQ query to search all the Sheet and select only the cells that contain the string
+                var query = from cell in sheet.Cells["A:XFD"]
+                            where cell.Value?.ToString().Contains(searchParameters[i,0]) == true
+                            select cell;
+
+                //replace the string in the cells that we selected
+                foreach (var cell in query)
+                {
+                    cell.Value = cell.Value.ToString().Replace(searchParameters[i, 0], searchParameters[i, 1]);
+                }
+            }
+
+        }
+
         #endregion
 
     }

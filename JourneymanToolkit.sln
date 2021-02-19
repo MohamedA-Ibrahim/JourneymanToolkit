@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelsRename", "LabelsRenam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetakesFormatter", "RetakesFormatter\RetakesFormatter.csproj", "{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomateRetakes", "AutomateRetakes\AutomateRetakes.csproj", "{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
