@@ -207,6 +207,7 @@ namespace RetakesFormatter
 
                 AutofitRows.DoAutoFit(sheet, row, true);
 
+                //set the hight for the empty rows
                 sheet.Row(20).Height = 23;
                 sheet.Row(21).Height = 23;
 

@@ -74,7 +74,7 @@ namespace RetakesFormatter.Classes.Formatting
             //measure the height of the text
             double SlicedCellHieght = TextRenderer.MeasureText(SlicedCell, drawingFont).Height;
 
-            sheet.Row(row).Height = Math.Min(409, SlicedCellHieght);
+            sheet.Row(row).Height = Math.Max(18.75, SlicedCellHieght);
 
         }
 
