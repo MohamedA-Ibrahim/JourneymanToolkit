@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using BulkDeleter;
 
 namespace JourneymanToolkit
 {
@@ -15,12 +8,6 @@ namespace JourneymanToolkit
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void btnBulkDeleter_Click(object sender, EventArgs e)
-        {
-            BulkDeleter.MainForm frm = new BulkDeleter.MainForm();
-            frm.Show();
         }
 
         private void btnLabelsRename_Click(object sender, EventArgs e)
@@ -35,9 +22,15 @@ namespace JourneymanToolkit
             frm.Show();
         }
 
-        private void btnExtractPerfectLines_Click(object sender, EventArgs e)
+        private void btnSecondCheckAutomation_Click(object sender, EventArgs e)
         {
-            AutomateRetakes.MainForm frm = new AutomateRetakes.MainForm();
+            SecondCheckAutomation.MainForm frm = new SecondCheckAutomation.MainForm();
+            frm.Show();
+        }
+
+        private void btnOldLinesManagement_Click(object sender, EventArgs e)
+        {
+            OldLinesManagement.MainForm frm = new OldLinesManagement.MainForm();
             frm.Show();
         }
     }

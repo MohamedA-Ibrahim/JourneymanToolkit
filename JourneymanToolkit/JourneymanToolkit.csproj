@@ -84,21 +84,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutomateRetakes\AutomateRetakes.csproj">
-      <Project>{704a5a9d-ba39-4838-bb7a-a9d8d5c9085f}</Project>
-      <Name>AutomateRetakes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BulkDeleter\BulkDeleter.csproj">
-      <Project>{af4b2b37-2c71-4872-a5f6-a3a8eb2a4584}</Project>
-      <Name>BulkDeleter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LabelsRename\LabelsRename.csproj">
       <Project>{a3d486db-48b6-4ab8-855a-05d61c3ad5ce}</Project>
       <Name>LabelsRename</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OldLinesManagement\OldLinesManagement.csproj">
+      <Project>{af4b2b37-2c71-4872-a5f6-a3a8eb2a4584}</Project>
+      <Name>OldLinesManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RetakesFormatter\RetakesFormatter.csproj">
       <Project>{f929b73a-90d9-4480-a9ab-cb34da38cae1}</Project>
       <Name>RetakesFormatter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SecondCheckAutomation\SecondCheckAutomation.csproj">
+      <Project>{704a5a9d-ba39-4838-bb7a-a9d8d5c9085f}</Project>
+      <Name>SecondCheckAutomation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
