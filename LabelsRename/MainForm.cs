@@ -61,7 +61,8 @@ namespace LabelsRename
             .Replace("MorroDefaultQuest_MDQIdle_", "MorroDefau_MDQIdleLinesTop_")
             .Replace("MorroDefaultQuest_MDQTopic_", "MorroDefau_MDQMolagMarTopi_")
             .Replace("MorroDefau_MDQTopic_", "MorroDefau_MDQMolagMarTopi_")
-            .Replace("MorroDefau_MDQVivecTopicCi_", "MorroDefau_MDQVivecTopic_"))
+            .Replace("MorroDefau_MDQVivecTopicCi_", "MorroDefau_MDQVivecTopic_")
+            .Trim())
                 .ToList();
 
             File.WriteAllLines(fileLocation, newLines);
@@ -88,11 +89,7 @@ namespace LabelsRename
 
         }
 
-        private void btnClearList_Click(object sender, EventArgs e)
-        {
-            lstLabelTracks.DataSource = null;
-            lstLabelTracks.Items.Clear();
-        }
+ 
 
         private void btnRemoveSelected_Click(object sender, EventArgs e)
         {
