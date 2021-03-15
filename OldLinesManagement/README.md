@@ -15,4 +15,4 @@ This tool helps voice processing team in finding unused audio lines or unrecorde
 
 ### Sreenshot
 
-![alt text]https://i.imgur.com/SSGiy3p.png)
+![alt text](https://i.imgur.com/SSGiy3p.png)
