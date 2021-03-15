@@ -1,4 +1,4 @@
-# Bulk Deleter
+# Old Lines Management
 
 A small tool made for [Skywind](https://tesrskywind.com/ "Skywind").
 
