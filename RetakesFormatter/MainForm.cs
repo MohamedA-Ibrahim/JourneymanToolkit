@@ -23,7 +23,7 @@ namespace RetakesFormatter
         SegmentsGrouping segmentsGrouping = new SegmentsGrouping();
         ReformmatedSheetFormatting reformmatedSheetFormatting = new ReformmatedSheetFormatting();
 
-        BackgroundWorker worker = new BackgroundWorker();
+        BackgroundWorker worker;
 
         #endregion
 
@@ -36,7 +36,6 @@ namespace RetakesFormatter
 
             //Set the licensing to NonCommercial
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
         }
 
 
@@ -52,7 +51,31 @@ namespace RetakesFormatter
         private void btnBegin_Click(object sender, EventArgs e)
         {
             //The method for marking missing lines in the Excel file
-            FormatFile(fileLocation);
+
+            worker = new BackgroundWorker();
+
+            //Using Background worker to prevent freezing the app while doing the formatting
+            worker.DoWork += delegate (object s, DoWorkEventArgs args)
+            {
+                FormatFile(fileLocation);
+            };
+
+            worker.RunWorkerCompleted += delegate (object s, RunWorkerCompletedEventArgs args)
+            {
+                if (args.Error != null)
+                {
+                    MessageBox.Show(args.Error.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Formatting has been successfully completed!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            };
+
+            worker.RunWorkerAsync();
+
         }
 
         #endregion
@@ -101,56 +124,36 @@ namespace RetakesFormatter
 
         private void FormatFile(string file)
         {
-            //Using Background worker to prevent freezing the app while doing the formatting
-            worker.DoWork += delegate (object s, DoWorkEventArgs args)
+            //Copy the contents of the sheet into a new file 
+            CreateCleanScript(file);
+
+            //Select the excel file
+            FileInfo ExcelFile = new FileInfo(file);
+
+            //Use the new file with the copied values
+            using (var package = new ExcelPackage(ExcelFile))
             {
-                //Copy the contents of the sheet into a new file 
-                CreateCleanScript(file);
+                ExcelWorksheet BaseSheet = package.Workbook.Worksheets[0];
+                ExcelWorksheet ReformattedSheet = package.Workbook.Worksheets.Add("Reformatted Sheet");
 
-                //Select the excel file
-                FileInfo ExcelFile = new FileInfo(file);
+                //Format the base sheet
+                baseSheetFormatting.FormatBaseSheet(BaseSheet);
 
-                    //Use the new file with the copied values
-                    using (var package = new ExcelPackage(ExcelFile))
-                    {
-                        ExcelWorksheet BaseSheet = package.Workbook.Worksheets[0];
-                        ExcelWorksheet ReformattedSheet = package.Workbook.Worksheets.Add("Reformatted Sheet");
+                //Get the grouped segments
+                GroupedLines = segmentsGrouping.GroupSegments(BaseSheet);
 
-                        //Format the base sheet
-                        baseSheetFormatting.FormatBaseSheet(BaseSheet);
+                //Format the Reformatted Sheet
+                reformmatedSheetFormatting.FormatReformattedInformation(BaseSheet, ReformattedSheet);
 
-                        //Get the grouped segments
-                        GroupedLines = segmentsGrouping.GroupSegments(BaseSheet);
+                //Insert the lines at the Reformatted sheet with grouping
+                reformmatedSheetFormatting.InsertLinesAtReformattedSheet(ReformattedSheet, GroupedLines);
 
-                        //Format the Reformatted Sheet
-                        reformmatedSheetFormatting.FormatReformattedInformation(BaseSheet, ReformattedSheet);
+                //Format the inserted Lines
+                reformmatedSheetFormatting.FormatInsertedLines(ReformattedSheet);
 
-                        //Insert the lines at the Reformatted sheet with grouping
-                        reformmatedSheetFormatting.InsertLinesAtReformattedSheet(ReformattedSheet, GroupedLines);
-
-                        //Format the inserted Lines
-                        reformmatedSheetFormatting.FormatInsertedLines(ReformattedSheet);
-
-                        //Save the excel file with the same name as the old file
-                        package.Save();
-                    };
-            };
-
-            worker.RunWorkerCompleted += delegate (object s, RunWorkerCompletedEventArgs args)
-            {
-                if (args.Error != null)
-                {
-                    MessageBox.Show(args.Error.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Formatting has been successfully completed!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            };
-
-            worker.RunWorkerAsync();
+                //Save the excel file with the same name as the old file
+                package.Save();
+            }
         }
 
         /// <summary>
