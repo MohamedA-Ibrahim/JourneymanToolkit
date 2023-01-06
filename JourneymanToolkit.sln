@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JourneymanToolkit", "JourneymanToolkit\JourneymanToolkit.csproj", "{9B8118E7-E97A-40F6-9874-AD48D3BCEA08}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkDeleter", "BulkDeleter\BulkDeleter.csproj", "{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelsRename", "LabelsRename\LabelsRename.csproj", "{A3D486DB-48B6-4AB8-855A-05D61C3AD5CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetakesFormatter", "RetakesFormatter\RetakesFormatter.csproj", "{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomateRetakes", "AutomateRetakes\AutomateRetakes.csproj", "{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldLinesManagement", "OldLinesManagement\OldLinesManagement.csproj", "{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondCheckAutomation", "SecondCheckAutomation\SecondCheckAutomation.csproj", "{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{9B8118E7-E97A-40F6-9874-AD48D3BCEA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B8118E7-E97A-40F6-9874-AD48D3BCEA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B8118E7-E97A-40F6-9874-AD48D3BCEA08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3D486DB-48B6-4AB8-855A-05D61C3AD5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3D486DB-48B6-4AB8-855A-05D61C3AD5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3D486DB-48B6-4AB8-855A-05D61C3AD5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,6 +31,10 @@ Global
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F929B73A-90D9-4480-A9AB-CB34DA38CAE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4B2B37-2C71-4872-A5F6-A3A8EB2A4584}.Release|Any CPU.Build.0 = Release|Any CPU
 		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704A5A9D-BA39-4838-BB7A-A9D8D5C9085F}.Release|Any CPU.ActiveCfg = Release|Any CPU
