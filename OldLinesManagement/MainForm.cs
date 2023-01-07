@@ -135,27 +135,6 @@ namespace OldLinesManagement
 
         #region Methods
 
-        ///// <summary>
-        ///// The method used to embed dll files into the executable 
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="args"></param>
-        ///// <returns></returns>
-        //System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        //{
-        //    string dllName = args.Name.Contains(',') ? args.Name.Substring(0, args.Name.IndexOf(',')) : args.Name.Replace(".dll", "");
-
-        //    dllName = dllName.Replace(".", "_").Replace("-", "_");
-
-        //    if (dllName.EndsWith("_resources")) return null;
-
-        //    System.Resources.ResourceManager rm = new System.Resources.ResourceManager(GetType().Namespace + ".Properties.Resources", System.Reflection.Assembly.GetExecutingAssembly());
-
-        //    byte[] bytes = (byte[])rm.GetObject(dllName);
-
-        //    return System.Reflection.Assembly.Load(bytes);
-        //}
-
         private void PopulateFromTxtOrExcel()
         {
             try
@@ -291,7 +270,7 @@ namespace OldLinesManagement
                         foreach (var file in filenameNotInFolders)
                         {
                             //Compare the current row in the excel file with the corresponding filename from the list of Missing Lines (filenameNotInFolders)
-                            if (lstFiles[i].Equals(file))
+                            if (lstFiles[i].ToLower().Equals(file.ToLower()))
                             {
                                 //Change the color of the range A(rowInExcelFile):G(rowInExcelFile) to Red where rowInExcelFile is the current row number in the Excel file
                                 worksheet.Cells["A" + rowInExcelFile + ":" + "G" + rowInExcelFile].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Red);
@@ -325,12 +304,12 @@ namespace OldLinesManagement
             try
             {
                 //LINQ function to get the list of files in the folder that don't exist in the excel file
-                var filesNotInExcelFile = System.IO.Directory.GetFiles(folder).Where(file => !filesInExcelFile.Contains(System.IO.Path.GetFileNameWithoutExtension(file)));
+                var filesNotInExcelFile = Directory.GetFiles(folder).Where(file => !filesInExcelFile.Contains(Path.GetFileNameWithoutExtension(file)));
 
                 //Begin the deletion process
                 foreach (var file in filesNotInExcelFile)
                 {
-                    System.IO.File.Delete(file);
+                    File.Delete(file);
                 }
             }
             catch (Exception ex)
@@ -346,23 +325,23 @@ namespace OldLinesManagement
         /// <param name="filesInExcelFile"></param>
         public void RenameFiles(string folder, List<string> filesInExcelFile)
         {
-            //try
-            //{
+            try
+            {
                 //LINQ function to get the list of files in the folder that don't exist in the excel file
-                var filesNotInExcelFile = System.IO.Directory.GetFiles(folder).Where(file => !filesInExcelFile.Contains(System.IO.Path.GetFileNameWithoutExtension(file)));
+                var filesNotInExcelFile = Directory.GetFiles(folder).Where(file => !filesInExcelFile.Contains(System.IO.Path.GetFileNameWithoutExtension(file)));
             
                 //Begin the deletion process
                 foreach (var file in filesNotInExcelFile)
                 {
                 string filename = Path.GetFileName(file);
 
-                    System.IO.File.Move(file, $"{Path.GetDirectoryName(file)}\\_{filename}");
+                    File.Move(file, $"{Path.GetDirectoryName(file)}\\_{filename}");
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblStatus.Text = "Error : " + ex.Message;
-            //}
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = "Error : " + ex.Message;
+            }
         }
 
         public List<string> FindMissingLines(string directory, List<string> filesInExcelFile)
