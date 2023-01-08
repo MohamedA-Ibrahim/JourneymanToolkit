@@ -66,7 +66,6 @@ namespace SecondCheckAutomation
             this.lbHorizontalLine.Name = "lbHorizontalLine";
             this.lbHorizontalLine.Size = new System.Drawing.Size(573, 2);
             this.lbHorizontalLine.TabIndex = 5;
-            this.lbHorizontalLine.Click += new System.EventHandler(this.label1_Click);
             // 
             // label3
             // 
@@ -76,7 +75,6 @@ namespace SecondCheckAutomation
             this.label3.Size = new System.Drawing.Size(573, 92);
             this.label3.TabIndex = 5;
             this.label3.Text = resources.GetString("label3.Text");
-            this.label3.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -88,7 +86,6 @@ namespace SecondCheckAutomation
             this.label2.Size = new System.Drawing.Size(161, 21);
             this.label2.TabIndex = 5;
             this.label2.Text = "Just Make sure that:";
-            this.label2.Click += new System.EventHandler(this.label1_Click);
             // 
             // label1
             // 
@@ -100,7 +97,6 @@ namespace SecondCheckAutomation
             this.label1.Text = "After finishing the second check, you had to copy Perfect and Bad lines into new " +
     "sheets to separate them.\r\nInstead of doing this process manually, you can now us" +
     "e this tool to do it for you.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtFile
             // 

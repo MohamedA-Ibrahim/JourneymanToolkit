@@ -9,34 +9,31 @@ namespace SecondCheckAutomation
 {
     public partial class MainForm : Form
     {
-        string fileLocation;
+        private string fileLocation;
+
         public MainForm()
         {
             InitializeComponent();
-            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
 
         private void btnSelectFile_Click(object sender, EventArgs e)
         {
             // OpenFileDialog Configurations
-            OpenFileDialog ofdFile = new OpenFileDialog();
-            ofdFile.Title = "Browse Excel or txt Files";
-            ofdFile.DefaultExt = "Excel";
-            ofdFile.Filter = "Excel files (*.xlsx)|*.xlsx| txt files (*.txt)|*.txt";
-            ofdFile.FilterIndex = 1;
-            ofdFile.CheckFileExists = true;
-            ofdFile.CheckPathExists = true;
+            OpenFileDialog ofdFile = new OpenFileDialog
+            {
+                Title = "Browse Excel or txt Files",
+                DefaultExt = "Excel",
+                Filter = "Excel files (*.xlsx)|*.xlsx| txt files (*.txt)|*.txt",
+                FilterIndex = 1,
+                CheckFileExists = true,
+                CheckPathExists = true
+            };
 
-            //If the user selects a file proceed
             if (ofdFile.ShowDialog() == DialogResult.OK)
             {
-                //Set the filLocation variable to the file chosen from the dialog
                 fileLocation = ofdFile.FileName;
-
-                //paste the filename into the text file
                 txtFile.Text = fileLocation;
-
             }
         }
 
@@ -45,7 +42,6 @@ namespace SecondCheckAutomation
             ReadExcelFile(fileLocation);
         }
 
-
         private void ReadExcelFile(string file)
         {
             try
@@ -53,23 +49,20 @@ namespace SecondCheckAutomation
                 //Select the excel file
                 FileInfo existingFile = new FileInfo(file);
 
-                //Using Epplus nuget package
                 using (ExcelPackage package = new ExcelPackage(existingFile))
                 {
-                    //Get the first worksheet in the workbook
                     ExcelWorksheet worksheet = package.Workbook.Worksheets["WorkTable"];
                     ExcelWorksheet PerfectSheet = package.Workbook.Worksheets.Copy("WorkTable", "Perfect");
                     ExcelWorksheet RetakesSheet = package.Workbook.Worksheets.Copy("WorkTable", "Retakes");
 
                     int rowEnd = worksheet.Dimension.End.Row;
 
+                    var PerfectRows = from cell in RetakesSheet.Cells["G4:G" + rowEnd]
+                                      where cell.Value?.ToString().ToLower().Contains("Perfect".ToLower()) == true
+                                      select cell.Start.Row;
 
-                    var NonPerfectRows = from cell in PerfectSheet.Cells["G4:G" + rowEnd] 
+                    var NonPerfectRows = from cell in PerfectSheet.Cells["G4:G" + rowEnd]
                                          where !cell.Value?.ToString().ToLower().Contains("Perfect".ToLower()) == true
-                                         select cell.Start.Row;
-
-                    var PerfectRows = from cell in RetakesSheet.Cells["G4:G" + rowEnd] 
-                                         where cell.Value?.ToString().ToLower().Contains("Perfect".ToLower()) == true
                                          select cell.Start.Row;
 
                     foreach (var row in NonPerfectRows)
@@ -88,18 +81,17 @@ namespace SecondCheckAutomation
                     PerfectSheet.DeleteRow(1, 3);
                     RetakesSheet.DeleteRow(1, 3);
 
-
                     package.Save();
 
                     MessageBox.Show("Success");
 
+                }
             }
-        }
             catch (Exception)
             {
                 MessageBox.Show("An error occured while formatting the file, Check that the excel file doesn't have any weird lines (empty or formula lines).");
             }
-}
+        }
 
 
         private void TrimEmptyRows(ExcelWorksheet worksheet)
@@ -124,12 +116,7 @@ namespace SecondCheckAutomation
                 }
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
-    }
+}
 

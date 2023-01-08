@@ -62,11 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Data\Lines.cs" />
-    <Compile Include="Classes\Formatting\AutofitRows.cs" />
-    <Compile Include="Classes\Formatting\BaseSheetFormatting.cs" />
-    <Compile Include="Classes\Formatting\ReformmatedSheetFormatting.cs" />
-    <Compile Include="Classes\Formatting\SegmentsGrouping.cs" />
+    <Compile Include="Models\Lines.cs" />
+    <Compile Include="Formatting\AutofitRows.cs" />
+    <Compile Include="Formatting\BaseSheetFormatting.cs" />
+    <Compile Include="Formatting\ReformmatedSheetFormatting.cs" />
+    <Compile Include="Formatting\SegmentsGrouping.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

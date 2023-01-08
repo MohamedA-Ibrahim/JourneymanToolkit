@@ -46,9 +46,11 @@ namespace OldLinesManagement
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
             //using Microsoft.WindowsAPICodePack-Shell Api that allows choosing folders instead of files
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = Settings.Default.folder;
-            dialog.IsFolderPicker = true;
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = Settings.Default.folder,
+                IsFolderPicker = true
+            };
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -140,14 +142,16 @@ namespace OldLinesManagement
             try
             {
                 // OpenFileDialog Configurations
-                OpenFileDialog ofdFile = new OpenFileDialog();
-                ofdFile.Title = "Browse Excel or txt Files";
-                ofdFile.DefaultExt = "Excel";
-                ofdFile.Filter = "Excel files (*.xlsx)|*.xlsx| txt files (*.txt)|*.txt";
-                ofdFile.FilterIndex = 1;
-                ofdFile.CheckFileExists = true;
-                ofdFile.CheckPathExists = true;
-                ofdFile.InitialDirectory = Settings.Default.folder;
+                OpenFileDialog ofdFile = new OpenFileDialog
+                {
+                    Title = "Browse Excel or txt Files",
+                    DefaultExt = "Excel",
+                    Filter = "Excel files (*.xlsx)|*.xlsx| txt files (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    CheckFileExists = true,
+                    CheckPathExists = true,
+                    InitialDirectory = Settings.Default.folder
+                };
 
                 //If the user selects a file proceed
                 if (ofdFile.ShowDialog() == DialogResult.OK)

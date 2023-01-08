@@ -143,7 +143,7 @@ namespace RetakesFormatter
                 GroupedLines = segmentsGrouping.GroupSegments(BaseSheet);
 
                 //Format the Reformatted Sheet
-                reformmatedSheetFormatting.FormatReformattedInformation(BaseSheet, ReformattedSheet);
+                reformmatedSheetFormatting.FormatHeader(BaseSheet, ReformattedSheet);
 
                 //Insert the lines at the Reformatted sheet with grouping
                 reformmatedSheetFormatting.InsertLinesAtReformattedSheet(ReformattedSheet, GroupedLines);

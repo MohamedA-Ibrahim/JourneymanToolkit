@@ -32,13 +32,15 @@ namespace LabelsRename
             try
             {
                 // OpenFileDialog Configurations
-                OpenFileDialog ofdFile = new OpenFileDialog();
-                ofdFile.Multiselect = true;
-                ofdFile.Title = "Browse txt Files";
-                ofdFile.DefaultExt = "txt";
-                ofdFile.Filter = "txt files (*.txt)|*.txt";
-                ofdFile.CheckFileExists = true;
-                ofdFile.CheckPathExists = true;
+                OpenFileDialog ofdFile = new OpenFileDialog
+                {
+                    Multiselect = true,
+                    Title = "Browse txt Files",
+                    DefaultExt = "txt",
+                    Filter = "txt files (*.txt)|*.txt",
+                    CheckFileExists = true,
+                    CheckPathExists = true
+                };
 
                 //If the user selects a file proceed
                 if (ofdFile.ShowDialog() == DialogResult.OK)
